@@ -1,0 +1,161 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwbhv8c4tt8ff"]
+
+[ext_resource type="ButtonGroup" uid="uid://ua6t0smt2ahc" path="res://scene/SettingsPanel/SettingsPanelListButtonGrouop.tres" id="1_8dd6l"]
+[ext_resource type="Script" path="res://scene/SettingsPanel/SettingsPanel.gd" id="1_i7mc3"]
+[ext_resource type="Texture2D" uid="uid://dqbo1jj7kbk0m" path="res://icon.svg" id="2_skplu"]
+[ext_resource type="FontFile" uid="uid://3yp2waus5ef4" path="res://visual/font/Alibaba-PuHuiTi-Bold.ttf" id="4_4ste7"]
+
+[sub_resource type="Theme" id="Theme_c44pg"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scfku"]
+bg_color = Color(1, 1, 1, 0.95)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ngjx3"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ok6ob"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[node name="SettingsPanel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_c44pg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_scfku")
+script = ExtResource("1_i7mc3")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[center][b]ClassSchedulePanel[/b] v0 by [b]LSDog[/b]
+~ pleasse enjoy ~[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSplit" type="HSplitContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollCat" type="ScrollContainer" parent="VBox/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ngjx3")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/HSplit/ScrollCat"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonClassSchedule" type="Button" parent="VBox/HSplit/ScrollCat/VBox"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("1_8dd6l")
+text = "Classes"
+
+[node name="ButtonClassSchedule2" type="Button" parent="VBox/HSplit/ScrollCat/VBox"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("1_8dd6l")
+text = "Class Schedule"
+
+[node name="ScrollClasses" type="ScrollContainer" parent="VBox/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ok6ob")
+
+[node name="VBox" type="VBoxContainer" parent="VBox/HSplit/ScrollClasses"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="HBox" type="HBoxContainer" parent="VBox/HSplit/ScrollClasses/VBox"]
+layout_mode = 2
+alignment = 2
+
+[node name="ButtonAdd" type="Button" parent="VBox/HSplit/ScrollClasses/VBox/HBox"]
+layout_mode = 2
+text = "[Add Empty]"
+
+[node name="ScrollClassSchedule" type="ScrollContainer" parent="VBox/HSplit"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ok6ob")
+
+[node name="Control" type="Control" parent="VBox/HSplit/ScrollClassSchedule"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="ButtonShow" type="Button" parent="VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "[课表：显示]"
+
+[node name="ButtonReload" type="Button" parent="VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "[重载课表面板]"
+
+[node name="ButtonSave" type="Button" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_4ste7")
+theme_override_font_sizes/font_size = 18
+text = "[save settings]"
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 48.0
+grow_horizontal = 0
+texture = ExtResource("2_skplu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "・∀・)ノ 别忘了点 [save settings] 保存！"

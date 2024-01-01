@@ -1,0 +1,147 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkfocq7v8ljn5"]
+
+[ext_resource type="Script" path="res://scene/SettingsPanel/SePClassCard.gd" id="1_qg5au"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkap7"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0.1)
+border_width_left = 2
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[node name="SePClassCard" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -535.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tkap7")
+script = ExtResource("1_qg5au")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxName" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxClassName" type="HBoxContainer" parent="HBox/VBoxName"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBox/VBoxName/HBoxClassName"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Class name"
+
+[node name="LineEdit" type="LineEdit" parent="HBox/VBoxName/HBoxClassName"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Class"
+
+[node name="HBoxShortName" type="HBoxContainer" parent="HBox/VBoxName"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBox/VBoxName/HBoxShortName"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Short Class name"
+
+[node name="LineEdit" type="LineEdit" parent="HBox/VBoxName/HBoxShortName"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "C"
+
+[node name="VBoxColor" type="HBoxContainer" parent="HBox/VBoxName"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HBox/VBoxName/VBoxColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Color"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="HBox/VBoxName/VBoxColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(1, 1, 1, 1)
+
+[node name="VBoxInfo" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxShortDuration" type="HBoxContainer" parent="HBox/VBoxInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBox/VBoxInfo/HBoxShortDuration"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Duration"
+
+[node name="SpinBox" type="SpinBox" parent="HBox/VBoxInfo/HBoxShortDuration"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1440.0
+value = 40.0
+rounded = true
+update_on_text_changed = true
+suffix = "min"
+
+[node name="HBoxShortTeacher" type="HBoxContainer" parent="HBox/VBoxInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBox/VBoxInfo/HBoxShortTeacher"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Teacher"
+
+[node name="LineEdit" type="LineEdit" parent="HBox/VBoxInfo/HBoxShortTeacher"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Mr.LSDog"
+
+[node name="HBoxShortPlace" type="HBoxContainer" parent="HBox/VBoxInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBox/VBoxInfo/HBoxShortPlace"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Place"
+
+[node name="LineEdit" type="LineEdit" parent="HBox/VBoxInfo/HBoxShortPlace"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Imagination"
+
+[node name="VBoxButton" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="ButtonCopy" type="Button" parent="HBox/VBoxButton"]
+layout_mode = 2
+text = "[Copy]"
+
+[node name="ButtonDelete" type="Button" parent="HBox/VBoxButton"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.882353, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0.882353, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.882353, 0, 0, 1)
+text = "[Delete]"

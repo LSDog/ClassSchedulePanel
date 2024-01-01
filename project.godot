@@ -1,0 +1,40 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ClassSchedulePanel"
+run/main_scene="res://scene/SettingsPanel/SettingsPanel.tscn"
+config/use_custom_user_dir=true
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+UUID="*res://data/UUID.gd"
+
+[display]
+
+window/size/transparent=true
+window/per_pixel_transparency/allowed=true
+
+[editor]
+
+naming/scene_name_casing=1
+
+[gui]
+
+theme/custom_font="res://visual/font/Alibaba-PuHuiTi-Regular.ttf"
+theme/default_font_multichannel_signed_distance_field=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+viewport/transparent_background=true

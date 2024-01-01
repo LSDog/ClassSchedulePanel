@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnhj8iafv0t4t"]
+
+[ext_resource type="Script" path="res://scene/SchedulePanel/ScPClassCard.gd" id="1_14kdm"]
+[ext_resource type="Script" path="res://data/SPClassData.gd" id="2_csxa3"]
+[ext_resource type="FontFile" uid="uid://3yp2waus5ef4" path="res://visual/font/Alibaba-PuHuiTi-Bold.ttf" id="3_pvfd7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50dl4"]
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.25)
+
+[sub_resource type="Resource" id="Resource_wa1nd"]
+script = ExtResource("2_csxa3")
+uuid = null
+name = "体育"
+short_name = "体"
+teacher = "田力"
+place = "操场"
+duration = 40
+color = Color(0.741176, 1, 0.321569, 1)
+
+[sub_resource type="Resource" id="Resource_ursfl"]
+script = ExtResource("2_csxa3")
+uuid = null
+name = "体育"
+short_name = "体"
+teacher = "外星人"
+place = "操场"
+duration = 50
+color = Color(0.741176, 1, 0.321569, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lcif5"]
+font = ExtResource("3_pvfd7")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_5kbxm"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_ck1ke"]
+font = ExtResource("3_pvfd7")
+font_size = 18
+
+[node name="SPClassCard" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -852.0
+offset_bottom = -538.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_50dl4")
+script = ExtResource("1_14kdm")
+data = SubResource("Resource_wa1nd")
+override_data = SubResource("Resource_ursfl")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBox" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="LabelShortName" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Class"
+label_settings = SubResource("LabelSettings_lcif5")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LabelInfo" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+text = "{name} | {teacher} | {duration} min"
+label_settings = SubResource("LabelSettings_5kbxm")
+horizontal_alignment = 2
+
+[node name="LabelTime" type="Label" parent="HBox/VBox"]
+layout_mode = 2
+text = "p.m. {start} ~ {end}"
+label_settings = SubResource("LabelSettings_ck1ke")
+horizontal_alignment = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBox"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 8
