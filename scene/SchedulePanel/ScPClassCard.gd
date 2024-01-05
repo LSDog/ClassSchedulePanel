@@ -2,17 +2,25 @@ class_name ScPClassCard
 extends PanelContainer
 ## A class card in the list panel
 
+@export_category("data")
+
 @export var data: SPClassData; ## This class' data
 @export var override: bool = false; ## If this specific class has changes
 @export var override_data: SPClassData; ## overrided data
 
 @export var start_time: float; ## The start time of this class
 
+@export_category("visual")
+## Show LabelInfo or not
+@export var show_info: bool = true:
+	set(value):
+		labelInfo.visible = value;
+		show_info = value;
+
 @onready var colorRect: ColorRect = $HBox/ColorRect;
 @onready var labelShortName: Label = $HBox/VBox/LabelShortName;
 @onready var labelInfo: Label = $HBox/VBox/LabelInfo;
 @onready var labelTime: Label = $HBox/VBox/LabelTime;
-
 
 func _ready() -> void:
 	start_time = floorf(Time.get_unix_time_from_system());

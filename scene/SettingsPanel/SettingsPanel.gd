@@ -1,17 +1,20 @@
 class_name SettingsPanel
 extends Panel
 
-var config :SPConfig;
+static var config :SPConfig;
 
-@onready var buttonShow: Button = $VBox/HBox/ButtonShow
-@onready var buttonReload: Button = $VBox/HBox/ButtonReload
-@onready var buttonSave: Button = $VBox/HBox/ButtonSave
+@onready var buttonShow: Button = $VBox/HBox/ButtonShow;
+@onready var buttonReload: Button = $VBox/HBox/ButtonReload;
+@onready var buttonSave: Button = $VBox/HBox/ButtonSave;
 
-# TODO 分设置选项在不同的类设定而不是在一个脚本里囊括所有的物件
-const SeP_CLASS_CARD = preload("res://scene/SettingsPanel/SePClassCard.tscn");
+const buttonGroup: ButtonGroup = preload("res://scene/SettingsPanel/SettingsPanelListButtonGrouop.tres");
+@onready var buttonClasses: Button = $VBox/HSplit/ScrollCat/VBox/ButtonClasses;
+@onready var buttonSchedule: Button = $VBox/HSplit/ScrollCat/VBox/ButtonSchedule;
 
-@onready var buttonAdd: Button = $VBox/HSplit/ScrollClasses/VBox/HBox/ButtonAdd;
-@onready var vBoxClassList: VBoxContainer = $VBox/HSplit/ScrollClasses/VBox;
+@onready var settingContainer: Control = $VBox/HSplit/Scroll/Container;
+@onready var settingClasses: SettingClasses = $VBox/HSplit/Scroll/Container/Classes;
+@onready var settingSchedule: SettingSchedule = $VBox/HSplit/Scroll/Container/Schedule;
+
 
 func _ready() -> void:
 	
@@ -19,7 +22,19 @@ func _ready() -> void:
 	
 	buttonSave.pressed.connect(save_config);
 	
-	buttonAdd.pressed.connect(func(): add_class());
+	buttonGroup.pressed.connect(switchSettingSection);
+
+## Switch different setting section baesd on button group
+func switchSettingSection(button: BaseButton):
+	var index := button.get_index();
+	var show_node :Control = null;
+	for node in settingContainer.get_children():
+		if !(node is Control): continue;
+		if node.get_index() == index:
+			show_node = node;
+		else:
+			node.visible = false;
+	show_node.visible = true;
 
 func save_config():
 	var err := ResourceSaver.save(config, "user://config.tres");
@@ -38,26 +53,5 @@ func load_config():
 		save_config();
 	# load data
 	for data in config.class_data_dic.values():
-		add_class(data);
+		settingClasses.add_class(data);
 
-func add_class(class_data :SPClassData = null):
-	var data :SPClassData = class_data if class_data != null else SPClassData.new();
-	print("add class: data: ", data);
-	config.class_data_dic[data.uuid] = data;
-	var class_card :SePClassCard = SeP_CLASS_CARD.instantiate() as SePClassCard;
-	class_card.copy_pressed.connect(copy_class.bind(class_card));
-	class_card.delete_pressed.connect(delete_class.bind(class_card));
-	class_card.size_flags_horizontal = Control.SIZE_FILL;
-	vBoxClassList.add_child(class_card);
-	class_card.data = data;
-
-func copy_class(class_card :SePClassCard) -> void:
-	print("copy class: ", class_card.data);
-	var new_data := class_card.data.duplicate() as SPClassData;
-	new_data.uuid = UUID.v4();
-	add_class(new_data);
-
-func delete_class(class_card :SePClassCard):
-	print("delete class: ", class_card.data)
-	class_card.queue_free();
-	config.class_data_dic.erase(class_card.data.uuid);

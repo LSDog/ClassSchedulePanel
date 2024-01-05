@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwbhv8c4tt8ff"]
+[gd_scene load_steps=11 format=3 uid="uid://dwbhv8c4tt8ff"]
 
 [ext_resource type="ButtonGroup" uid="uid://ua6t0smt2ahc" path="res://scene/SettingsPanel/SettingsPanelListButtonGrouop.tres" id="1_8dd6l"]
 [ext_resource type="Script" path="res://scene/SettingsPanel/SettingsPanel.gd" id="1_i7mc3"]
 [ext_resource type="Texture2D" uid="uid://dqbo1jj7kbk0m" path="res://icon.svg" id="2_skplu"]
+[ext_resource type="Script" path="res://scene/SettingsPanel/SettingClasses.gd" id="3_xflyw"]
 [ext_resource type="FontFile" uid="uid://3yp2waus5ef4" path="res://visual/font/Alibaba-PuHuiTi-Bold.ttf" id="4_4ste7"]
+[ext_resource type="Script" path="res://scene/SettingsPanel/settingSchedule.gd" id="4_ccstg"]
 
 [sub_resource type="Theme" id="Theme_c44pg"]
 Label/colors/font_color = Color(0, 0, 0, 1)
@@ -22,7 +24,7 @@ content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ok6ob"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5i8u"]
 content_margin_left = 8.0
 content_margin_top = 8.0
 content_margin_right = 8.0
@@ -69,48 +71,59 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ngjx3")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ButtonClassSchedule" type="Button" parent="VBox/HSplit/ScrollCat/VBox"]
+[node name="ButtonClasses" type="Button" parent="VBox/HSplit/ScrollCat/VBox"]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("1_8dd6l")
 text = "Classes"
 
-[node name="ButtonClassSchedule2" type="Button" parent="VBox/HSplit/ScrollCat/VBox"]
+[node name="ButtonSchedule" type="Button" parent="VBox/HSplit/ScrollCat/VBox"]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("1_8dd6l")
-text = "Class Schedule"
+text = "Schedule"
 
-[node name="ScrollClasses" type="ScrollContainer" parent="VBox/HSplit"]
+[node name="Scroll" type="ScrollContainer" parent="VBox/HSplit"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ok6ob")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m5i8u")
 
-[node name="VBox" type="VBoxContainer" parent="VBox/HSplit/ScrollClasses"]
+[node name="Container" type="BoxContainer" parent="VBox/HSplit/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+
+[node name="Classes" type="BoxContainer" parent="VBox/HSplit/Scroll/Container"]
+layout_mode = 2
+size_flags_vertical = 0
+vertical = true
+script = ExtResource("3_xflyw")
+
+[node name="VBoxClassList" type="VBoxContainer" parent="VBox/HSplit/Scroll/Container/Classes"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="HBox" type="HBoxContainer" parent="VBox/HSplit/ScrollClasses/VBox"]
+[node name="HBox" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Classes/VBoxClassList"]
 layout_mode = 2
 alignment = 2
 
-[node name="ButtonAdd" type="Button" parent="VBox/HSplit/ScrollClasses/VBox/HBox"]
+[node name="ButtonAdd" type="Button" parent="VBox/HSplit/Scroll/Container/Classes/VBoxClassList/HBox"]
 layout_mode = 2
 text = "[Add Empty]"
 
-[node name="ScrollClassSchedule" type="ScrollContainer" parent="VBox/HSplit"]
+[node name="Schedule" type="BoxContainer" parent="VBox/HSplit/Scroll/Container"]
 visible = false
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_ok6ob")
+vertical = true
+script = ExtResource("4_ccstg")
 
-[node name="Control" type="Control" parent="VBox/HSplit/ScrollClassSchedule"]
+[node name="GridContainer" type="GridContainer" parent="VBox/HSplit/Scroll/Container/Schedule"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+columns = 5
 
 [node name="HBox" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
