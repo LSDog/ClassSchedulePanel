@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwbhv8c4tt8ff"]
+[gd_scene load_steps=13 format=3 uid="uid://dwbhv8c4tt8ff"]
 
 [ext_resource type="ButtonGroup" uid="uid://ua6t0smt2ahc" path="res://scene/SettingsPanel/SettingsPanelListButtonGrouop.tres" id="1_8dd6l"]
 [ext_resource type="Script" path="res://scene/SettingsPanel/SettingsPanel.gd" id="1_i7mc3"]
 [ext_resource type="Texture2D" uid="uid://dqbo1jj7kbk0m" path="res://icon.svg" id="2_skplu"]
 [ext_resource type="Script" path="res://scene/SettingsPanel/SettingClasses.gd" id="3_xflyw"]
 [ext_resource type="FontFile" uid="uid://3yp2waus5ef4" path="res://visual/font/Alibaba-PuHuiTi-Bold.ttf" id="4_4ste7"]
-[ext_resource type="Script" path="res://scene/SettingsPanel/settingSchedule.gd" id="4_ccstg"]
+[ext_resource type="Script" path="res://scene/SettingsPanel/SettingSchedule.gd" id="4_ccstg"]
+[ext_resource type="FontFile" uid="uid://cxmfbgrxl6166" path="res://visual/font/Alibaba-PuHuiTi-Light.ttf" id="5_boee4"]
 
 [sub_resource type="Theme" id="Theme_c44pg"]
 Label/colors/font_color = Color(0, 0, 0, 1)
@@ -29,6 +30,11 @@ content_margin_left = 8.0
 content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tpm1o"]
+font = ExtResource("5_boee4")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
 
 [node name="SettingsPanel" type="Panel"]
 anchors_preset = 15
@@ -102,28 +108,136 @@ size_flags_vertical = 0
 vertical = true
 script = ExtResource("3_xflyw")
 
-[node name="VBoxClassList" type="VBoxContainer" parent="VBox/HSplit/Scroll/Container/Classes"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 16
-
-[node name="HBox" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Classes/VBoxClassList"]
+[node name="HBox" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Classes"]
 layout_mode = 2
 alignment = 2
 
-[node name="ButtonAdd" type="Button" parent="VBox/HSplit/Scroll/Container/Classes/VBoxClassList/HBox"]
+[node name="ButtonAdd" type="Button" parent="VBox/HSplit/Scroll/Container/Classes/HBox"]
 layout_mode = 2
 text = "[Add Empty]"
+
+[node name="VBoxClassList" type="VBoxContainer" parent="VBox/HSplit/Scroll/Container/Classes"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
 
 [node name="Schedule" type="BoxContainer" parent="VBox/HSplit/Scroll/Container"]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
 vertical = true
 script = ExtResource("4_ccstg")
 
-[node name="GridContainer" type="GridContainer" parent="VBox/HSplit/Scroll/Container/Schedule"]
+[node name="HSplit" type="HSplitContainer" parent="VBox/HSplit/Scroll/Container/Schedule"]
 layout_mode = 2
-columns = 5
+size_flags_vertical = 3
+
+[node name="BoxClassChoose" type="BoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+vertical = true
+
+[node name="LabelHint" type="Label" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/BoxClassChoose"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+text = "拖动磁贴并放置★"
+autowrap_mode = 3
+
+[node name="Scroll" type="ScrollContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/BoxClassChoose"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/BoxClassChoose/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxWeek" type="VBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxDay0" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelName" type="Label" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek/HBoxDay0"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "一"
+label_settings = SubResource("LabelSettings_tpm1o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxDay1" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelName" type="Label" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek/HBoxDay1"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "二"
+label_settings = SubResource("LabelSettings_tpm1o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxDay2" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelName" type="Label" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek/HBoxDay2"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "三"
+label_settings = SubResource("LabelSettings_tpm1o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxDay3" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelName" type="Label" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek/HBoxDay3"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "四"
+label_settings = SubResource("LabelSettings_tpm1o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxDay4" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelName" type="Label" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek/HBoxDay4"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "五"
+label_settings = SubResource("LabelSettings_tpm1o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxDay5" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelName" type="Label" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek/HBoxDay5"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "六"
+label_settings = SubResource("LabelSettings_tpm1o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxDay6" type="HBoxContainer" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelName" type="Label" parent="VBox/HSplit/Scroll/Container/Schedule/HSplit/VBoxWeek/HBoxDay6"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "日"
+label_settings = SubResource("LabelSettings_tpm1o")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBox" type="HBoxContainer" parent="VBox"]
 layout_mode = 2

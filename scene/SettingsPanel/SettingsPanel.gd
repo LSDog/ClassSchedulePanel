@@ -51,7 +51,12 @@ func load_config():
 		config = SPConfig.new();
 		print("init config: ", config);
 		save_config();
+	# verify and fix the data
+	for uuid in config.class_data_dic.keys():
+		if config.class_data_dic_order.find(uuid) == -1:
+			config.class_data_dic_order.append(uuid);
+	save_config();
 	# load data
-	for data in config.class_data_dic.values():
+	for data in config.get_classes_ordered():
 		settingClasses.add_class(data);
 

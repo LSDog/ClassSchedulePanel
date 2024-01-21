@@ -1,4 +1,4 @@
-class_name SePClassCard
+class_name SePClassEditCard
 extends PanelContainer
 
 @export var data :SPClassData:
@@ -16,8 +16,14 @@ extends PanelContainer
 @onready var buttonCopy: Button = $HBox/VBoxButton/ButtonCopy;
 @onready var buttonDelete: Button = $HBox/VBoxButton/ButtonDelete;
 
+@onready var labelDrag: Label = $HBox/VBoxButton/LabelDrag;
+
+var dragged :bool = false;
+
 signal copy_pressed;
 signal delete_pressed;
+signal drag;
+signal drop;
 
 func _ready() -> void:
 	buttonCopy.pressed.connect(func():copy_pressed.emit());
@@ -28,6 +34,24 @@ func _ready() -> void:
 	bind_text_change(editPlace, "place");
 	spinDuration.value_changed.connect(func(value:float):data.duration=floori(value));
 	colorPicker.color_changed.connect(func(color:Color):data.color=color);
+
+func _notification(what: int) -> void:
+	if dragged && what == NOTIFICATION_DRAG_END:
+		dragged = false;
+		drop.emit();
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	if !labelDrag.get_global_rect().has_point(get_global_mouse_position()): return;
+	var preview := Control.new();
+	var child := duplicate(0);
+	preview.add_child(child);
+	preview.size = size;
+	child.size = size;
+	child.position = -at_position;
+	set_drag_preview(preview);
+	dragged = true;
+	drag.emit();
+	return self;
 
 func bind_text_change(lineEdit :LineEdit, prop_name :String):
 	lineEdit.text_changed.connect(func(text:String): data.set(prop_name, text));

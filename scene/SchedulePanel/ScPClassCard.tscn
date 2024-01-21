@@ -42,13 +42,8 @@ font = ExtResource("3_pvfd7")
 font_size = 18
 
 [node name="SPClassCard" type="PanelContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -852.0
-offset_bottom = -538.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 300.0
+offset_bottom = 89.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_50dl4")
 script = ExtResource("1_14kdm")
 data = SubResource("Resource_wa1nd")

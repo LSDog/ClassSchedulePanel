@@ -70,6 +70,7 @@ static func v4_rng(rng: RandomNumberGenerator):
   
 var _uuid: Array
 
+@warning_ignore("static_called_on_instance")
 func _init(rng := RandomNumberGenerator.new()) -> void:
   _uuid = uuidbinrng(rng)
 

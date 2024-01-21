@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkfocq7v8ljn5"]
+[gd_scene load_steps=4 format=3 uid="uid://bkfocq7v8ljn5"]
 
-[ext_resource type="Script" path="res://scene/SettingsPanel/SePClassCard.gd" id="1_qg5au"]
+[ext_resource type="Script" path="res://scene/SettingsPanel/SePClassEditCard.gd" id="1_tfbkq"]
+[ext_resource type="FontFile" uid="uid://3yp2waus5ef4" path="res://visual/font/Alibaba-PuHuiTi-Bold.ttf" id="2_vajj4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkap7"]
 content_margin_left = 6.0
@@ -12,18 +13,16 @@ border_width_left = 2
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 
-[node name="SePClassCard" type="PanelContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -640.0
-offset_bottom = -535.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="SePClassEditCard" type="PanelContainer"]
+anchors_preset = -1
+offset_right = 404.0
+offset_bottom = 105.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tkap7")
-script = ExtResource("1_qg5au")
+script = ExtResource("1_tfbkq")
 
 [node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -32,6 +31,7 @@ theme_override_constants/separation = 16
 [node name="VBoxName" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
 [node name="HBoxClassName" type="HBoxContainer" parent="HBox/VBoxName"]
 layout_mode = 2
@@ -56,7 +56,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
-text = "Short Class name"
+text = "Short name"
 
 [node name="LineEdit" type="LineEdit" parent="HBox/VBoxName/HBoxShortName"]
 layout_mode = 2
@@ -81,6 +81,7 @@ color = Color(1, 1, 1, 1)
 [node name="VBoxInfo" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
 [node name="HBoxShortDuration" type="HBoxContainer" parent="HBox/VBoxInfo"]
 layout_mode = 2
@@ -114,7 +115,6 @@ text = "Teacher"
 [node name="LineEdit" type="LineEdit" parent="HBox/VBoxInfo/HBoxShortTeacher"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Mr.LSDog"
 
 [node name="HBoxShortPlace" type="HBoxContainer" parent="HBox/VBoxInfo"]
 layout_mode = 2
@@ -129,7 +129,6 @@ text = "Place"
 [node name="LineEdit" type="LineEdit" parent="HBox/VBoxInfo/HBoxShortPlace"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Imagination"
 
 [node name="VBoxButton" type="VBoxContainer" parent="HBox"]
 layout_mode = 2
@@ -137,11 +136,21 @@ size_flags_vertical = 4
 
 [node name="ButtonCopy" type="Button" parent="HBox/VBoxButton"]
 layout_mode = 2
-text = "[Copy]"
+theme_override_fonts/font = ExtResource("2_vajj4")
+text = "Copy"
 
 [node name="ButtonDelete" type="Button" parent="HBox/VBoxButton"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.882353, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0.882353, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.882353, 0, 0, 1)
-text = "[Delete]"
+theme_override_colors/icon_pressed_color = Color(0.882353, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_vajj4")
+text = "Delete"
+
+[node name="LabelDrag" type="Label" parent="HBox/VBoxButton"]
+layout_mode = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 6
+text = "drag≡"
